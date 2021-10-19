@@ -1,0 +1,47 @@
+﻿测试说明
+
+
+数据约定：
+redis 数据  按照下面4个通道发送数据过来
+
+const MSG_CH_SYSTEM = "system"
+const MSG_CH_P2P = "p2p"
+const MSG_CH_CHAT = "chat"
+const MSG_CH_MARKET = "market"
+
+数据格式必须是 json 文本
+数据必须包含字段：
+{"msgtype":"system","datatype":"kdata","touserid":"234", "data:" :"xxxxx" }
+
+
+
+chat   txt    img 
+
+{"msgtype":"p2p","fromuser":"1001","touser":"33048874","data":{"userid":"user_1101"}}
+
+{"msgtype":"p2p","fromuser":"1001","touser":"1001","data":{"userid":"user_1101"}}
+{"msgtype":"login","fromuser":"user_1101","data":{"userid":"user_1101"}}
+{"msgtype":"login","data":{"userid":"user_1101"}}
+{"msgtype":"req","datatype":"kdata","touserid":"234", "data:" :"xxxxx" }
+{"msgtype":"sub","subtitle":"ru2201","fromuser":"1001","touser":"234", "data:" :"xxxxx" }
+{"msgtype":"echo","datatype":"kdata","touserid":"234", "data:" :"xxxxx" }
+
+websocket 
+下发数据 同redis
+上行数据 
+
+
+{"msgtype":"login","data":{"userid":"0001"}}
+msgtype = login /logout /req / sub /unsub
+
+
+功能测试：
+1. 使用 client.html 
+   a) 测试login , logout, disconnect   d
+   b) 接收ms 发来的数据， 比如system数据， p2p数据
+
+
+2.使用脚本压力测试在线数，只发心跳， 再加广播通知
+
+
+
